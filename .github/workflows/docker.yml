@@ -26,5 +26,5 @@ jobs:
     - name: Build with Docker
       uses: docker/build-push-action@v5
       with:
-        push: false
+        push: ${{ github.ref == 'refs/heads/master' }}
         tags: timveil/cockroachdb-remote-client:latest,timveil/cockroachdb-remote-client:${{ steps.tag.outputs.short_sha }}
