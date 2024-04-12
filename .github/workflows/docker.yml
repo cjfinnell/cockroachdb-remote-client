@@ -19,3 +19,4 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         push: false
+        tags: timveil/cockroachdb-remote-client:latest
