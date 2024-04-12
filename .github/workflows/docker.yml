@@ -39,3 +39,4 @@ jobs:
       with:
         push: ${{ github.ref == 'refs/heads/master' }}
         tags: ${{ secrets.DOCKERHUB_REPO }}:latest,${{ secrets.DOCKERHUB_REPO }}:${{ steps.tag.outputs.short_sha }}
+        platforms: linux/amd64,linux/arm64
