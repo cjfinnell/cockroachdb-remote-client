@@ -15,8 +15,16 @@ jobs:
     - name: Checkout Project
       uses: actions/checkout@v2
 
+    - name: Determine SHA tag for Docker image
+      id: tag
+      run: |
+        SHA=${{ github.event.after }}
+        SHORT_SHA=${SHA::8}
+        echo "short_sha=${SHORT_SHA}" | tee "$GITHUB_OUTPUT"
+
+
     - name: Build with Docker
       uses: docker/build-push-action@v5
       with:
         push: false
-        tags: timveil/cockroachdb-remote-client:latest
+        tags: timveil/cockroachdb-remote-client:latest,timveil/cockroachdb-remote-client:${{ steps.tag.outputs.short_sha }}
